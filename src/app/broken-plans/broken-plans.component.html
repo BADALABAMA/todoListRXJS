@@ -1,0 +1,9 @@
+<button (click)="redirect()" mat-raised-button>Todo List</button>
+
+<div class="container" *ngFor="let todo of brokenPlans">
+  <p>ID: {{ todo.id }}</p>
+  <p>Date: {{ todo.date | date : "dd/MM/yyyy" }}</p>
+  <p>Title: {{ todo.title }}</p>
+  <p>Description: {{ todo.description }}</p>
+  <p>Status: {{ todo.status }}</p>
+</div>

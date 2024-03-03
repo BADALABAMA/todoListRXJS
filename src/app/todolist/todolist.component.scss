@@ -1,0 +1,75 @@
+/* Общие стили для формы */
+.form-container {
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.form {
+}
+
+mat-form-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+mat-form-field input,
+mat-form-field mat-select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+mat-form-field input:focus,
+mat-form-field mat-select:focus {
+  outline: none;
+  border-color: #66a3ff;
+}
+
+/* Стили для кнопок */
+button {
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+}
+
+button[type="submit"] {
+  background-color: #66a3ff;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #4d8aff;
+}
+
+button[mat-raised-button] {
+  margin-right: 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.container p {
+  margin: 5px 0;
+}
+
+.container .done {
+  background-color: #e6ffe6;
+}
+
+mat-paginator {
+  max-width: 600px;
+  margin: 20px auto;
+}

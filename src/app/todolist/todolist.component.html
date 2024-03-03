@@ -1,0 +1,71 @@
+<button (click)="link()" routerLink="/broken-plans" routerLinkActive="active">
+  BROKEN PLANS
+</button>
+
+<mat-form-field class="form-container">
+  <form #ngForm="ngForm" (submit)="addNewTask(ngForm)" class="form">
+    <mat-label class="label">Title/Edit</mat-label>
+    <input matInput placeholder="Title/Edit" ngModel name="title" required />
+
+    <mat-label class="label">Description/Edit</mat-label>
+    <input
+      matInput
+      placeholder="Description/Edit"
+      ngModel
+      name="description"
+      required
+    />
+
+    <mat-label class="label">Status</mat-label>
+    <mat-select [(ngModel)]="status" name="status" required>
+      <mat-option value="ToDo">ToDo</mat-option>
+      <mat-option value="done">Done</mat-option>
+      <mat-option value="inProgress">In Progress</mat-option>
+    </mat-select>
+
+    <mat-label class="label">Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" name="date" ngModel required />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+    <button mat-raised-button type="submit" color="primary">Submit</button>
+  </form>
+  <button (click)="sortTodos()" mat-raised-button>sort</button>
+
+  <form form (ngSubmit)="filterTodo(selectedStatus)">
+    <mat-select name="status" [(ngModel)]="selectedStatus">
+      <mat-option value="ToDo">ToDo</mat-option>
+      <mat-option value="done">Done</mat-option>
+      <mat-option value="inProgress">In Progress</mat-option>
+    </mat-select>
+    <button type="submit">Filter Todos</button>
+  </form> </mat-form-field
+>>
+
+<div
+  *ngFor="let todo of todos$ | async"
+  class="container"
+  [ngClass]="{ done: todo.status === 'done' }"
+>
+  <p>ID: {{ todo.id }}</p>
+  <p>Date: {{ todo.date | date : "dd/MM/yyyy" }}</p>
+  <p>Title: {{ todo.title }}</p>
+  <p>Description: {{ todo.description }}</p>
+  <p>Status: {{ todo.status }}</p>
+
+  <button mat-raised-button color="warn" (click)="deleteTodo(todo.id)">
+    Delete
+  </button>
+  <button mat-raised-button color="primary" (click)="editTodo(todo.id, ngForm)">
+    Edit
+  </button>
+</div>
+
+<mat-paginator
+  *ngIf="totalTodo.length >= 10"
+  [length]="totalTodo.length"
+  [pageSize]="pageSize"
+  (page)="pageChanged($event)"
+  aria-label="Select page"
+>
+</mat-paginator>
